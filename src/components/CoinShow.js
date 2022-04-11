@@ -1,18 +1,18 @@
 import React from "react";
 import data from "../utils/data.js";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import NumberFormat from "react-number-format";
-import Coinlabel from "./USDPop.js";
+import UsdPop from "./UsdPop";
 
 export default function CoinShow() {
   
   return (
-    <>
-    <Coinlabel />
+   <Box>
+    <UsdPop />
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table aria-label="simple table">
         <TableHead>
-          <TableRow sx={{ '&:last-child th': { fontWeight : 'bold' } }}>
+          <TableRow sx={{ '&:last-child th': { fontWeight : 'bold' } }} >
             <TableCell >#</TableCell>
             <TableCell >Coin</TableCell>
             <TableCell align="right" >Price</TableCell>
@@ -50,6 +50,6 @@ export default function CoinShow() {
         </TableBody>
       </Table>
     </TableContainer>
-    </>
+  </Box>
   );
 }

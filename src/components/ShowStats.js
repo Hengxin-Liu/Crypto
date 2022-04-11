@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card, CardContent, FormControlLabel, FormGroup, Grid, Stack, Switch, Typography } from "@mui/material";
 import { useState } from "react";
 import NumberFormat from "react-number-format";

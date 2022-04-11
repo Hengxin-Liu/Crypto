@@ -2,8 +2,7 @@ import { ButtonBase, Grid, Link, Popover, Stack, TextField, Typography} from '@m
 import React, { useState } from 'react';
 import data from '../utils/data';
 
-
-function USDPop() {
+export default function UsdPop() {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -64,5 +63,3 @@ function USDPop() {
      </div>
     );
 }
-
-export default USDPop;
