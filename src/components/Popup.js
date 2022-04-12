@@ -8,7 +8,7 @@ function Popup(props) {
    };
 
     return (
-     <Dialog open={open} onClose={handleClose}>
+     <Dialog open={open} onClose={handleClose} >
         <DialogContent>
           {children}
         </DialogContent>
