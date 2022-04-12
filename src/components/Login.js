@@ -1,17 +1,20 @@
 import { Box, Button, Checkbox, FormControlLabel, Grid,Stack,TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 function Login(props) {
-    const [signup ,setSignup] = useState(false);
+
+    const [signup ,setSignup] = useState(props.signup);
     const [email,setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmpassword] = useState('');
     const handleSubmit = (event) => {
         event.preventDefault();
     }; 
-
+  useEffect(() => {
+   setSignup(props.signup);
+  },[props.signup]);
     return (
      <div>
         <Grid container>  
