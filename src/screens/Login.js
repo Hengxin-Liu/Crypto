@@ -12,8 +12,8 @@ function Login(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
     }; 
-  useEffect(() => {
-   setSignup(props.signup);
+    useEffect(() => {
+     setSignup(props.signup);
   },[props.signup]);
     return (
      <div>

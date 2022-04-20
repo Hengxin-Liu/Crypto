@@ -1,10 +1,9 @@
 import React from 'react';
 import { Grid } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import Headers from "./components/Headers";
-import CoinShow from "./components/CoinShow";
-import ScreenTab from "./components/ScreenTab";
-import ShowStats from "./components/ShowStats";
+import Headers from './screens/Header';
+import ShowStats from './screens/ShowStats';
+import CoinShow from './screens/CoinShow';
 
 
 function App() {

@@ -41,3 +41,7 @@ code {
 a{
  text-decoration: none;
 }
+.star::before{
+  content: ' \2606';
+  margin-right: 2px;
+}
