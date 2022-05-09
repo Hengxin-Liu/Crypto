@@ -6,7 +6,7 @@ import UsdPop from "./UsdPop";
 
 export default function CoinShow() {
   
-  return (
+  return (  
    <Box>
     <UsdPop />
     <TableContainer component={Paper}>
@@ -34,17 +34,20 @@ export default function CoinShow() {
               </TableCell>
               <TableCell>{coin.name}</TableCell>
               <TableCell align="right">
-                <NumberFormat
-                 value={coin.price} 
-                 displayType={'text'} 
-                 thousandSeparator={true} 
-                 prefix={'$'}/>
+                <NumberFormat  value={coin.price} displayType={'text'} 
+                 thousandSeparator={true}  prefix={'$'}/>
               </TableCell>
               <TableCell align="right">{(coin.onehour/100).toFixed(1)}%</TableCell>
               <TableCell align="right">{(coin.oneday/100).toFixed(1)}%</TableCell>
               <TableCell align="right">{(coin.sevendays/100).toFixed(1)}%</TableCell>
-              <TableCell align="right">{coin.onedayVolume}</TableCell>
-              <TableCell align="right">{coin.mkt_cap}</TableCell>
+              <TableCell align="right">
+               <NumberFormat  value={coin.onedayVolume} displayType={'text'} 
+                 thousandSeparator={true}  prefix={'$'}/>
+              </TableCell>
+              <TableCell align="right">
+               <NumberFormat  value={coin.mkt_cap} displayType={'text'} 
+                 thousandSeparator={true}  />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

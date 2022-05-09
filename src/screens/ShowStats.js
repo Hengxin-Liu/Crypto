@@ -1,23 +1,23 @@
 import React from 'react'
-import { Card, CardContent, FormControlLabel, FormGroup, Grid, Stack, Switch, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, FormControlLabel, FormGroup, Grid, Stack, Switch, Typography } from "@mui/material";
 import { useState } from "react";
 import NumberFormat from "react-number-format";
 import data from "../utils/data";
+import ArrowDownwardTwoToneIcon from '@mui/icons-material/ArrowDownwardTwoTone';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 function Show() {
     const [show, setShow] = useState(false);
     const handleChange = (event) => {
        setShow(event.target.checked);
      };
-   
      return (
-       <div>
-        <Stack direction="row" spacing={2} alignItems="center">
+       <div>    
           <Grid container spacing={2}>
-            <Grid item md={4}>
+            <Grid item >
              <Typography sx={{ fontWeight:'bold',fontSize:'1.4rem'}}>Cryptocurrency Prices by Market Cap</Typography>
             </Grid>
-            <Grid item md={8}>
+            <Grid item >
              <FormGroup>
               <FormControlLabel 
                control={
@@ -27,32 +27,41 @@ function Show() {
              </FormGroup>
             </Grid>
           </Grid>
-        </Stack>
         { show && (<div className="spacevertical">
          <Grid container spacing={2} >
           {data.cards.map((card) => (
-            <Grid item md={3}>
-             <Card sx={{ width:'290px',height:'100px'}} className={card.status === 'down' ? "red" : card.status === 'up' ? "green" : "gray"}>
-              <CardContent>
-              {card.name === 'Bitcoin Market Cap Dominance' ? (
-                 <Typography sx={{ fontSize: '1.5rem' }}>
-                   <NumberFormat
-                   value={(card.amount/100).toFixed(2)} 
-                   displayType={'text'} 
-                   thousandSeparator={true} 
-                   prefix={'$'}/>%
-                 </Typography>
-              ) : (
-             <Typography sx={{ fontSize: '1.5rem' }}>
-               <NumberFormat
-                value={card.amount} 
-                displayType={'text'} 
-                thousandSeparator={true} 
-                prefix={'$'}/>
-                </Typography>
-                )}
-              <Typography>{card.name}</Typography>
-              </CardContent>
+            <Grid item lg={3} md={6}>
+             <Card sx={{ width:'300px',height:'100px'}} className={card.status === 'down' ? "red" : card.status === 'up' ? "green" : "gray"}>
+              <CardContent sx={{display:'flex'}}>
+             <Box>
+              {card.name === 'Bitcoin Market Cap Dominance' ? (         
+                 <Typography fontSize='1.5rem' >
+                   <NumberFormat value={(card.amount/100).toFixed(2)}  displayType={'text'} 
+                    thousandSeparator={true}  />%
+                 </Typography>            
+              ) :  card.name === 'Total of Coins' ? (
+                <Typography  fontSize='1.5rem' >
+                <NumberFormat value={card.amount}  displayType={'text'} 
+                 thousandSeparator={true}   />
+              </Typography>    
+              ) :(
+                <Typography  fontSize='1.5rem' >
+                  <NumberFormat  value={card.amount}  displayType={'text'} 
+                    thousandSeparator={true}  prefix={'$'}/>
+                </Typography>            
+              )}
+               <Typography fontSize="1.1rem">{card.name}</Typography>
+               </Box>
+               <Box pl="10px">
+                 { card.status==='up' ? (
+                  < ArrowUpwardIcon sx={{ fontSize:'4rem', color:'green'}}/>
+                 ) : card.status==='down' ? (
+                  <ArrowDownwardTwoToneIcon sx={{ fontSize:'4rem', color:'red' }}/>
+                 ) :(
+                   <></>
+                 )}
+               </Box>
+              </CardContent> 
              </Card>
             </Grid>
           ))}

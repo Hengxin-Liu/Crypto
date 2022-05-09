@@ -38,7 +38,7 @@ const data = {
         status: 'none',
       },
       {
-        name : '# of Coins' ,
+        name : 'Total of Coins' ,
         amount: 1344, 
         status: 'none',
       },

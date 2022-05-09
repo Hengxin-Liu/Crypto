@@ -10,26 +10,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
 /*show card status */
 .red{
-  border-left: 12px solid red;
+  border-left: 10px solid red;
 }
 .green{
-  border-left: 12px solid green; 
+  border-left: 10px solid green; 
 }
 .gray{
-  border-left: 12px solid gray;
+  border-left: 10px solid gray;
 }
 .spacevertical{
-  margin: 20px 0;
+  margin: 10px 0;
 }
 .coinp{
   margin: 20px 15px;
   width: 500px;
   height: auto;
-}
-.grow{
-  flex-grow:1
 }
 .main{
   height: 80vh;
@@ -40,6 +38,7 @@ code {
 }
 a{
  text-decoration: none;
+ color: orange;
 }
 .star::before{
   content: ' \2606';
