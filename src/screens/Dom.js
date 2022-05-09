@@ -8,9 +8,8 @@ function Dom(props) {
   }
   return (
     <>
-     <h1>Succeed</h1>
-     {createElement('h2', null, 'Lift History!')}
-     <button type='button' onClick={handler} id="btn"></button>
+     <h1>Coins</h1>
+    
     </>     
     );
 }

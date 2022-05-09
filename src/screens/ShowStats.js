@@ -33,24 +33,24 @@ function Show() {
             <Grid item lg={3} md={6}>
              <Card sx={{ width:'300px',height:'100px'}} className={card.status === 'down' ? "red" : card.status === 'up' ? "green" : "gray"}>
               <CardContent sx={{display:'flex'}}>
-             <Box>
-              {card.name === 'Bitcoin Market Cap Dominance' ? (         
+               <Box>
+               {card.name === 'Bitcoin Market Cap Dominance' ? (         
                  <Typography fontSize='1.5rem' >
                    <NumberFormat value={(card.amount/100).toFixed(2)}  displayType={'text'} 
                     thousandSeparator={true}  />%
                  </Typography>            
-              ) :  card.name === 'Total of Coins' ? (
-                <Typography  fontSize='1.5rem' >
-                <NumberFormat value={card.amount}  displayType={'text'} 
-                 thousandSeparator={true}   />
-              </Typography>    
-              ) :(
-                <Typography  fontSize='1.5rem' >
+               ) :  card.name === 'Total of Coins' ? (
+                 <Typography  fontSize='1.5rem' >
+                  <NumberFormat value={card.amount}  displayType={'text'} 
+                    thousandSeparator={true}   />
+                 </Typography>    
+               ) :(
+                 <Typography  fontSize='1.5rem' >
                   <NumberFormat  value={card.amount}  displayType={'text'} 
                     thousandSeparator={true}  prefix={'$'}/>
-                </Typography>            
+                 </Typography>            
               )}
-               <Typography fontSize="1.1rem">{card.name}</Typography>
+                <Typography fontSize="1.1rem">{card.name}</Typography>
                </Box>
                <Box pl="10px">
                  { card.status==='up' ? (
