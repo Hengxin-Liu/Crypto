@@ -1,11 +1,10 @@
 import React from 'react';
 import { createTheme, CssBaseline, Grid, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
-import Header, { ColorModeContext } from './screens/Header';
-import ShowStats from './screens/ShowStats';
-import CoinShow from './screens/CoinShow';
-import Dom from './screens/Dom';
+import HeaderScreen, { ColorModeContext } from './screens/HeaderScreen';
 
+import HomeScreen from './screens/HomeScreen'
+import CoinScreen from './screens/CoinScreen';
 
 function App() {
   const [mode, setMode] = React.useState('light');
@@ -21,33 +20,30 @@ function App() {
     () =>
       createTheme({
         palette: {
-          mode,
-        },
+          mode,   
+        }
       }),
     [mode],
   );
   return (
-    <div>
-    <ColorModeContext.Provider value={colorMode}>
-    <ThemeProvider theme={theme}>
+  <React.Fragment>
      <CssBaseline />
       <Grid container spacing={2}>
         <Grid item xs={12} margin="3px" component="header">
-          <Header />
+          <ColorModeContext.Provider value={colorMode}>
+           <ThemeProvider theme={theme}>
+            <HeaderScreen />
+           </ThemeProvider>
+          </ColorModeContext.Provider>  
         </Grid>
-        <Grid item xs={12} margin="2px" component="nav">
-         <ShowStats />
-        </Grid>   
-        <Grid item xs={12} margin="3px" component="body">     
+        <Grid item xs={12} margin="3px" component="body">    
         <Routes>
-         <Route path="/" element={<CoinShow />} />
-         <Route path="/coins" element={<Dom />} />
+         <Route path="/" element={<HomeScreen />} /> 
+          <Route path="coin/:id" element={< CoinScreen />}/>     
         </Routes>
        </Grid> 
       </Grid> 
-    </ThemeProvider>
-    </ColorModeContext.Provider>
-    </div>
+   </React.Fragment>
   );
 }
 

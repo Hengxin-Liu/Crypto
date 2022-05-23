@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React from 'react';
 
 function Dom(props) {
   const handler = () => {

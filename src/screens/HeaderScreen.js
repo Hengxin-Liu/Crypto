@@ -4,14 +4,14 @@ import { AppBar, Box, Button,IconButton,Menu,MenuItem,Toolbar,Tooltip,Typography
 import MenuIcon from '@mui/icons-material/Menu';
 import PersonIcon from '@mui/icons-material/Person';
 import Popup from '../components/Popup';
-import Login from './Login';
+import Login from './LoginScreen';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 export const ColorModeContext = createContext({ toggleColorMode: () => {} });
 const pages = ['Coins','Exchanges','NFT','Publications','Resources'];
 
-function Header(props) {
+function HeaderScreen(props) {
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [open,setOpen] = useState(false);
     const [open2,setOpen2] = useState(false);
@@ -24,12 +24,14 @@ function Header(props) {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     return (
+    <React.Fragment>
      <AppBar position='sticky' >
         <Toolbar disableGutters >
-          <Typography variant="h5" noWrap component="div"
-           sx={{ margin:'0 3vh', display: { xs: 'none', md: 'flex' }}}>
-             <Link to="/">  LOGO  </Link> 
-           </Typography>
+          <Box sx={{ margin:'0 3vh', display: { xs: 'none', md: 'flex' }}}>
+            <Link to="/">  
+             <img src='/images/logo.png' alt='Harry Logo' width="50" /> 
+            </Link> 
+           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
             <IconButton size="large" aria-label="menu"
               aria-controls="menu-appbar" aria-haspopup="true"
@@ -51,7 +53,7 @@ function Header(props) {
                 </MenuItem>
               ))}
             </Menu>
-            </Box>
+          </Box>
             <Box sx={{  flexGrow: 1,display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
              <Link to={`/${page.toLowerCase()}`}>
@@ -93,7 +95,8 @@ function Header(props) {
           </Box>
         </Toolbar>
      </AppBar>
+    </React.Fragment>
     );
 }
 
-export default Header;
+export default HeaderScreen;

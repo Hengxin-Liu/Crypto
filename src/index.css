@@ -40,6 +40,12 @@ a{
  text-decoration: none;
  color: orange;
 }
+a:hover{
+  color: green;
+}
+.coinclolor {
+  color: initial;
+}
 .star::before{
   content: ' \2606';
   margin-right: 2px;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Card, CardContent, CardMedia, FormControlLabel, FormGroup, Grid, Stack, Switch, Typography } from "@mui/material";
+import { Box, Card, CardContent, FormControlLabel, FormGroup, Grid, Switch, Typography } from "@mui/material";
 import { useState } from "react";
 import NumberFormat from "react-number-format";
 import data from "../utils/data";
@@ -20,10 +20,8 @@ function Show() {
             <Grid item >
              <FormGroup>
               <FormControlLabel 
-               control={
-                <Switch
-                 checked={show}
-                 onChange={handleChange}/> } label="Show Stats" />
+               control={<Switch checked={show} onChange={handleChange}/> } 
+               label="Show Stats" />
              </FormGroup>
             </Grid>
           </Grid>

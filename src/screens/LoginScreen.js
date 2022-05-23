@@ -1,22 +1,52 @@
-import { Box, Button, Checkbox, FormControlLabel, Grid,Stack,TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Checkbox, FormControlLabel, FormHelperText, Grid,Stack,TextField, Typography, useFormControl } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+const validEmail = new RegExp('[0-9a-z_$]+@[a-z]+\.[a-z]{2,3}');
 
-function Login(props) {
+function LoginScreen(props) {
+  const [signup ,setSignup] = useState(props.signup);
+  const [email,setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmpassword, setConfirmpassword] = useState('');
+ useEffect(() => {
+    setSignup(props.signup);
+},[props.signup]);
+ 
+ const EmailHelper = () => {
+   const { filled } = useFormControl() || {};
+   const helperText = React.useMemo(() => {
+     if (filled && !validEmail.exec(email)) {
+       return <Alert severity="info"> Please enter right email </Alert>; 
+       }
+       return ;
+   }, [filled]);
+  return <FormHelperText>{helperText}</FormHelperText>;
+}
 
-    const [signup ,setSignup] = useState(props.signup);
-    const [email,setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmpassword, setConfirmpassword] = useState('');
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    }; 
-    useEffect(() => {
-     setSignup(props.signup);
-  },[props.signup]);
+ const  PasswordHelper = () => {
+   const { filled } = useFormControl() || {};
+   const helperText = React.useMemo(() => {
+     if (filled ) {
+       return  !password 
+       ? <Alert severity="info"> Please type password  </Alert> 
+       :  password !== confirmpassword 
+       ? <Alert severity="error"> Password doesn't match  </Alert>
+       : null;  
+     }
+     return null;
+    }, [filled]);
+  return <FormHelperText>{helperText}</FormHelperText>;
+}
+
+ const handleSubmit = (event) => {
+    event.preventDefault();
+    if(!validEmail.exec(email)){
+      
+    }
+}; 
     return (
-     <div>
+      <React.Fragment>
         <Grid container>  
          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ margin:'50px 10px', width:'520px'}} autoComplete="off">
            <Grid item xs={12}>
@@ -25,9 +55,11 @@ function Login(props) {
             </Typography>
            </Grid>
            <Grid item xs={12}>
-            <TextField margin="normal" required fullWidth id="email"
+            <TextField margin="normal" required fullWidth id={signup ? "new-email" : "email"}
               label="Email Address" name="email" 
-              onChange={(e)=>setEmail(e.target.value)}/>
+              onChange={(e)=>setEmail(e.target.value)}
+              helperText={signup ? <EmailHelper /> : <></>}
+              />
             </Grid>
             <Grid item xs={12}>
              <TextField margin="normal" required fullWidth name="password"
@@ -38,9 +70,10 @@ function Login(props) {
              <Grid item xs={12}>
               <TextField margin="normal" required fullWidth name="confirm-password"
                label="Confirm Password" type="password" id="confrim-password" 
-               onChange={(e)=>setPassword(e.target.value)} />
+               onChange={(e)=>setConfirmpassword(e.target.value)} 
+               helperText= {signup ? <PasswordHelper /> : <></>} />
              </Grid>)}
-            { signup ? (
+            {signup ? (
              <Stack>
               <FormControlLabel
                control={<Checkbox value="agree" color="primary" />}
@@ -49,7 +82,7 @@ function Login(props) {
                control={<Checkbox value="subscrib" color="primary" />}
                label={<Typography variant="body2" >I would like to subscribe to CoinGecko's daily newsletter</Typography>}/>
              </Stack>
-              ) : (  
+            ) : (  
               <Grid container  direction="row" justifyContent="space-between" alignItems="center">
                <Grid item >
                 <FormControlLabel
@@ -79,9 +112,9 @@ function Login(props) {
               )}    
              </Box>
            </Box>     
-        </Grid> 
-     </div>
+        </Grid>  
+      </React.Fragment>
     );
 }
 
-export default Login;
+export default LoginScreen;
