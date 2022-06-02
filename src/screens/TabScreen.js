@@ -2,7 +2,7 @@ import { Box, Tabs,Tab } from '@mui/material';
 import React from 'react';
 import AddCoin from '../components/AddCoin';
 import TabPanel from '../components/TabPanel';
-import Coin from '../components/Coin';
+import CoinsScreen from './CoinsScreen';
 
 function a11yProps(index) {
   return {
@@ -26,7 +26,7 @@ function TabScreen(props) {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-          <Coin />
+          <CoinsScreen />
         </TabPanel>
         <TabPanel value={value} index={1}>
          <AddCoin />

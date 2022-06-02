@@ -5,7 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -21,12 +20,12 @@ code {
 .gray{
   border-left: 10px solid gray;
 }
-.spacevertical{
-  margin: 10px 0;
+.vertical-gap{
+  margin: 8px 0;
 }
-.coinp{
+.coinpop{
   margin: 20px 15px;
-  width: 500px;
+  width: 450px;
   height: auto;
 }
 .main{
@@ -40,6 +39,10 @@ a{
  text-decoration: none;
  color: orange;
 }
+a.coinpop{
+  color:initial;
+  font-size: 12px;
+}
 a:hover{
   color: green;
 }
@@ -49,4 +52,8 @@ a:hover{
 .star::before{
   content: ' \2606';
   margin-right: 2px;
+}
+.moveright{
+  color: black;
+  float: right;
 }

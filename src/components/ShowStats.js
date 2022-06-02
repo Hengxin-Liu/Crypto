@@ -28,8 +28,8 @@ function Show() {
         { show && (<div className="spacevertical">
          <Grid container spacing={2} >
           {data.cards.map((card) => (
-            <Grid item lg={3} md={6}>
-             <Card sx={{ width:'300px',height:'100px'}} className={card.status === 'down' ? "red" : card.status === 'up' ? "green" : "gray"}>
+            <Grid item lg={3} md={6} key={card.name}>
+             <Card sx={{ width:'300px',height:'100px'}} className={card.status === 'down' ? "red" : card.status === 'up' ? "green" : "gray"} >
               <CardContent sx={{display:'flex'}}>
                <Box>
                {card.name === 'Bitcoin Market Cap Dominance' ? (         

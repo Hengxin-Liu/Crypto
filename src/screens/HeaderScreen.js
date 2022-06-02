@@ -21,6 +21,12 @@ function HeaderScreen(props) {
     const handleCloseNavMenu = () => {
       setAnchorElNav(null);
     };
+    const handleClose = () => {
+      setOpen(false);
+    };
+    const handleClose2= () => {
+      setOpen2(false);
+    };
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
     return (
@@ -29,7 +35,7 @@ function HeaderScreen(props) {
         <Toolbar disableGutters >
           <Box sx={{ margin:'0 3vh', display: { xs: 'none', md: 'flex' }}}>
             <Link to="/">  
-             <img src='/images/logo.png' alt='Harry Logo' width="50" /> 
+             <img src='/images/logo.png' alt='Crypto' width="50" /> 
             </Link> 
            </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
@@ -47,7 +53,7 @@ function HeaderScreen(props) {
               sx={{ display: { xs: 'block', md: 'none' } }} >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                 <Link to={`/${page.toLowerCase()}`}>
+                 <Link to={`/${page.toLowerCase()}`} key={page}>
                     <Typography textAlign="center">{page}</Typography> 
                  </Link>
                 </MenuItem>
@@ -56,7 +62,7 @@ function HeaderScreen(props) {
           </Box>
             <Box sx={{  flexGrow: 1,display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-             <Link to={`/${page.toLowerCase()}`}>
+             <Link to={`/${page.toLowerCase()}`} key={page}>
                <Button key={page} onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 >{page}  
@@ -70,7 +76,7 @@ function HeaderScreen(props) {
               onClick={() => setOpen(true)} color="inherit">
               <PersonIcon />
             </IconButton>
-            <Popup open={open} setOpen={setOpen} >
+            <Popup open={open} onClose={handleClose} >
                   <Login signup={false}/>
               </Popup>
           </Box>
@@ -83,13 +89,13 @@ function HeaderScreen(props) {
             <Button onClick={() => setOpen(true) } sx={{ my: 2, color: 'white', display: 'block' }}>
                 Log in     
             </Button> 
-               <Popup open={open} setOpen={setOpen} >
+               <Popup open={open}  onClose={handleClose} >
                   <Login signup={false}/>
                </Popup>
             <Button onClick={() => setOpen2(true)} sx={{ my: 2, color: 'white', display: 'block' }}>
                 Sign up    
             </Button>
-               <Popup open={open2} setOpen={setOpen2} >
+               <Popup open={open2}  onClose={handleClose2} >
                   <Login signup={true}/>
                </Popup> 
           </Box>

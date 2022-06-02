@@ -1,5 +1,5 @@
-import { Alert, Box, Button, FormHelperText, Grid, TextField, Typography, useFormControl } from '@mui/material';
-import React, { useState } from 'react';
+import { Alert, Box, Button, FilledInput, FormControl, FormHelperText, Grid,  Typography, useFormControl } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 
 function AddCoin(props) {
   const [name, setName] = useState('');
@@ -18,18 +18,18 @@ function NameHelperText() {
     }, [filled]);
     return <FormHelperText>{helperText}</FormHelperText>;
   }
-  const add =  () => {
+  const add =  (name,price) => {
      fetch("http://localhost:5000/coins",{
       method: "POST",
       body: JSON.stringify({
         id: "",
-        name: `${name}`,
-        price: `${price}`,
+        name: name,
+        price: price,
         onehour: null,
         oneday: null,
         sevendays: null,
-        onedayVolume: null,
-        mkt_cap: null
+        onedayVolume: 1.5 * price,
+        mkt_cap: 2 * price
       }),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
@@ -37,16 +37,18 @@ function NameHelperText() {
     })
    .then(res => res.json())
  }
+ useEffect( ()=> {
+   
+ },[]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if(name.length > 7 || !name){
      alert("Your name should be less than 7 characters");
     }
     else{
-      add();
+      add(name,price);
     }
   }
- 
     return (
        <Grid container>
         <Box component="form" onSubmit={handleSubmit} autoComplete="off" mt={2} width="400px"
@@ -55,22 +57,31 @@ function NameHelperText() {
             '& .MuiTextField-root': { mb: 2 },
           }}>
          <Grid item xs={12}>
-          <Typography component="h1" variant="h5" mb={2}>
+          <Typography component="div" variant="h5" >
             Add Coins
           </Typography>
          </Grid>
          <Grid item xs={12}>
-          <TextField  id="name" label="Name" variant='filled' type="text" fullWidth required
-            onChange={(e) => setName(e.target.value)} value={name}
-            helperText={<NameHelperText />} 
-            />
+          <FormControl fullWidth >
+            <FilledInput placeholder="Name"
+              fullWidth required className="vertical-gap"
+              id="name" label="Name" variant='filled' type="text" 
+              value={name}
+              onChange={(e) => setName(e.target.value)} />
+           {name.length > 7 ? <NameHelperText/> : null}
+          </FormControl>
          </Grid>
          <Grid item xs={12}>
-          <TextField id="price" label="Price" variant='filled' type="number" fullWidth required
-             onChange={(e) => setPrice(e.target.value)} value={price} />
+          <FormControl fullWidth >
+            <FilledInput placeholder="Price"
+              fullWidth required className="vertical-gap"
+              label="Price" variant='filled' type="number" 
+              value={price}
+              onChange={(e) => setPrice(e.target.value)} />
+          </FormControl> 
          </Grid>
-         <Grid item xs={12}>
-          <Button type="submit" variant="contained" fullWidth
+         <Grid item xs={12} mt={2}>
+          <Button type="submit" variant="contained" fullWidth 
           > Submit </Button>
          </Grid>
         </Box>

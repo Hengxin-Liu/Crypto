@@ -1,5 +1,6 @@
-import { Box, ButtonBase, Grid, Link, Popover, Stack, TextField, Typography} from '@mui/material';
+import { Box, ButtonBase, Grid, Popover, TextField, Typography} from '@mui/material';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import data from '../utils/data';
 
 export default function UsdPop(props) {
@@ -28,29 +29,26 @@ export default function UsdPop(props) {
           vertical: 'bottom',
           horizontal: 'left',
        }}>
-         <div className='coinp'>
+         <div className="coinpop">
           <Grid container  rowSpacing={2}>
            <Grid item md={12}>
             <TextField size='small' id="search"  variant="outlined" placeholder='Search'/>
-           </Grid>
-           <Grid item >
-            <Grid container rowSpacing={3}>
+           </Grid>    
+            <Grid item container rowSpacing={2}>
              {data.currency.map((x) => (
-              <>
-                <Grid item xs={12}>
-                 <Typography sx={{ fontSize: '16px' }}>{x.name}</Typography>
+              <React.Fragment key={x.id}>
+                <Grid item xs={12}  >
+                 <Typography sx={{ fontSize: '16px' }} >{x.name}</Typography>
                 </Grid>
                 {x.coins.map((coin) => (
-                  <Grid item md={4} xs={6}>
-                   <Stack >
-                     <Link  href={`/coins/${coin.name}`} underline="none" color='black' 
-                     sx={{fontSize:'13px' }}>{coin.short} {coin.name}</Link> 
-                    </Stack>  
+                  <Grid item md={4} xs={6}  key={coin.id}>
+                     <Link  to={`/coins/${coin.id}`} className="coinpop" >
+                       {coin.short} {coin.name}
+                     </Link> 
                   </Grid>
                 ))}  
-              </>
+              </React.Fragment>
              ))}
-            </Grid>
            </Grid>
           </Grid> 
         </div>        

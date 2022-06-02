@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { Alert, Box, CircularProgress, Grid, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import NumberFormat from "react-number-format";
-import UsdPop from "./UsdPop";
+import UsdPop from "../components/UsdPop";
 import { Link } from "react-router-dom";
 import AddIcon from '@mui/icons-material/Add';
-import Popup from "./Popup";
-import AddCoin from "./AddCoin";
+import Popup from "../components/Popup";
+import AddCoin from "../components/AddCoin";
 import axios from "axios";
 
-export default function Coin() {
+export default function CoinsScreen() {
   const [data, setData] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [open,setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
  async function getData() { 
-     await axios(" http://localhost:5000/coins")
+     await axios.get(" http://localhost:5000/coins")
       .then( res => {
         setData(res.data)
      })
@@ -29,18 +32,18 @@ export default function Coin() {
       getData();
 },[]);
   return (  
-    <React.Fragment>
+ <React.Fragment>
    <Box>
      <Grid  container direction="row" justifyContent="space-between" alignItems="center"> 
       <UsdPop mb={2} /> 
-      <IconButton aria-label="add">
-       <AddIcon onClick={() => setOpen(true)}/>
-        <Popup open={open} setOpen={setOpen} >
-          <AddCoin />
-         </Popup>
+      <IconButton aria-label="add" onClick={() => setOpen(true) }>
+       <AddIcon />
       </IconButton> 
+      <Popup open={open} onClose={handleClose} >
+          <AddCoin />
+        </Popup>
      </Grid>
-    { error ? <Alert severity="error"> This is an error alert</Alert> 
+    { error ? <Alert severity="error"> Content couldn't find</Alert> 
     : loading ? <CircularProgress color="success" />
     :
     <TableContainer component={Paper}>
@@ -91,6 +94,6 @@ export default function Coin() {
     </TableContainer>
     }
   </Box>
-  </React.Fragment> 
+</React.Fragment> 
   );
 }

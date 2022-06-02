@@ -22,13 +22,13 @@
     },
     {
       "id": 3,
-      "name": "TTT",
-      "price": "3423423",
+      "name": "RYN",
+      "price": "21123321",
       "onehour": null,
       "oneday": null,
       "sevendays": null,
-      "onedayVolume": null,
-      "mkt_cap": null
+      "onedayVolume": 31684981.5,
+      "mkt_cap": 42246642
     }
   ],
   "cards": [
@@ -55,11 +55,16 @@
   ],
   "currency": [
     {
+      "id": 1,
       "name": "Cryptocurrencies",
       "coins": [
         {
           "short": "BTC",
           "name": "Bitcoin"
+        },
+        {
+          "short": "XRP",
+          "name": "XRP"
         },
         {
           "short": "ETH",
@@ -70,16 +75,13 @@
           "name": "Bitcoin Cash"
         },
         {
-          "short": "XRP",
-          "name": "XRP"
-        },
-        {
           "short": "XLM",
           "name": "Lumens"
         }
       ]
     },
     {
+      "id": 2,
       "name": "Suggested Currencies",
       "coins": [
         {

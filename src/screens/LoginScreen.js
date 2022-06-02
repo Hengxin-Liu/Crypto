@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Checkbox, FormControlLabel, FormHelperText, Grid,Stack,TextField, Typography, useFormControl } from '@mui/material';
+import { Alert, Box, Button, Checkbox, FilledInput, FormControl, FormControlLabel, FormHelperText, Grid,Stack,Typography, useFormControl } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function LoginScreen(props) {
      if (filled && !validEmail.exec(email)) {
        return <Alert severity="info"> Please enter right email </Alert>; 
        }
-       return ;
+       return null;
    }, [filled]);
   return <FormHelperText>{helperText}</FormHelperText>;
 }
@@ -54,24 +54,28 @@ function LoginScreen(props) {
              {signup ?  'Sign up' : 'Log in'}
             </Typography>
            </Grid>
-           <Grid item xs={12}>
-            <TextField margin="normal" required fullWidth id={signup ? "new-email" : "email"}
-              label="Email Address" name="email" 
-              onChange={(e)=>setEmail(e.target.value)}
-              helperText={signup ? <EmailHelper /> : <></>}
-              />
-            </Grid>
-            <Grid item xs={12}>
-             <TextField margin="normal" required fullWidth name="password"
-              label="Password" type="password" id="password" 
-              onChange={(e)=>setPassword(e.target.value)} />
-            </Grid>
+            <FormControl fullWidth >
+              <FilledInput placeholder="Please enter email" 
+                required  name="email" className="vertical-gap"
+                label="Email" type="email" id={ signup ? "new-email" : "email"}
+                onChange={(e)=>setEmail(e.target.value)}/>
+              {signup ? <EmailHelper /> : null}
+             </FormControl>
+            <FormControl fullWidth >
+             <FilledInput placeholder="Please enter password" 
+             required  name="password" className="vertical-gap"
+             label="Password" type="password" id={signup ? "new-password" : "password"} 
+             onChange={(e)=>setPassword(e.target.value)}/>
+            </FormControl>
             {signup && (
              <Grid item xs={12}>
-              <TextField margin="normal" required fullWidth name="confirm-password"
-               label="Confirm Password" type="password" id="confrim-password" 
-               onChange={(e)=>setConfirmpassword(e.target.value)} 
-               helperText= {signup ? <PasswordHelper /> : <></>} />
+              <FormControl fullWidth className="vertical-gap">
+                <FilledInput placeholder="Please confirm Password" 
+                required  name="confirm-password" className="vertical-gap"
+                label="Confirm-Password" type="password" id="confirmpassword" 
+                onChange={(e)=>setConfirmpassword(e.target.value)}/>
+               <PasswordHelper />
+              </FormControl>
              </Grid>)}
             {signup ? (
              <Stack>

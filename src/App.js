@@ -26,24 +26,24 @@ function App() {
     [mode],
   );
   return (
-  <React.Fragment>
-     <CssBaseline />
+  <div>   
       <Grid container spacing={2}>
-        <Grid item xs={12} margin="3px" component="header">
+       <CssBaseline />
+        <Grid item xs={12}  component="header">
           <ColorModeContext.Provider value={colorMode}>
            <ThemeProvider theme={theme}>
             <HeaderScreen />
            </ThemeProvider>
           </ColorModeContext.Provider>  
         </Grid>
-        <Grid item xs={12} margin="3px" component="body">    
+        <Grid item xs={12} mx={2}>    
         <Routes>
          <Route path="/" element={<HomeScreen />} /> 
-          <Route path="coin/:id" element={< CoinScreen />}/>     
+         <Route path="coin/:id" element={< CoinScreen />}/>     
         </Routes>
        </Grid> 
       </Grid> 
-   </React.Fragment>
+   </div>
   );
 }
 
